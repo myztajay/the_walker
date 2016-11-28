@@ -6,20 +6,23 @@ var walkingLeft = false;
 var leftBorder = 0;
 var rightBorder = window.innerWidth - walker.offsetWidth;
 var speed = 20;
-var xPos = leftBorder;
+var xPos = rightBorder;
+
 
 // The update function is called once every "frame" (via setInterval)
 // Changing the walker's position each frame, will cause him to move across the screen
 function update() {
   // ensure walker is facing to the right (reverse of "normal")
   // CSS does this for us, we just assign the right class.
-  walker.classList.add("flip");
+  walker.classList.add("reg");
 
   // Move "speed" pixels per iteration:
-  xPos += speed;
+  xPos -= speed;
   // Reset back to left side, when we run into right wall
-  if(xPos >= rightBorder){
-    xPos = leftBorder;
+  if(xPos <= leftBorder){
+    walker.className ="flip";
+    xPos = 21;
+
   }
   // reposition the walker
   walker.style.left = xPos + "px";
