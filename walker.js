@@ -5,7 +5,7 @@ var walker = document.getElementById('walker');
 var walkingLeft = false;
 var leftBorder = 0;
 var rightBorder = window.innerWidth - walker.offsetWidth;
-var speed = 10;
+var speed = 20;
 var xPos = leftBorder;
 
 // The update function is called once every "frame" (via setInterval)
