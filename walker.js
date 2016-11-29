@@ -9,20 +9,43 @@ var speed = 20;
 var xPos = rightBorder;
 
 
+walker.addEventListener('click', getJson)
+
+
+function getJson(){
+  var url = "http://quotes.rest/qod.json?category=inspire"
+  $.ajax({
+    url: url,
+    type: "GET",
+    dataType: "json"
+  }).done(function(response){
+    first = document.getElementById('first') ;
+    first.innerHTML = response.contents.quotes[0].quote;
+
+
+  })
+
+}
+
+
+
 // The update function is called once every "frame" (via setInterval)
 // Changing the walker's position each frame, will cause him to move across the screen
 function update() {
   // ensure walker is facing to the right (reverse of "normal")
   // CSS does this for us, we just assign the right class.
-  walker.classList.add("reg");
+
 
   // Move "speed" pixels per iteration:
-  xPos -= speed;
+
   // Reset back to left side, when we run into right wall
   if(xPos <= leftBorder){
     walker.className ="flip";
-    xPos = 21;
 
+  }
+  else{
+    walker.className ="reg";
+    xPos -= speed;
   }
   // reposition the walker
   walker.style.left = xPos + "px";
